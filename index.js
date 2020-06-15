@@ -44,7 +44,7 @@ try {
     console.log("⚡️ Bolt app is running!");
     
     // After the app starts, publish message
-    publishMessage(
+    await publishMessage(
         app,
         slackChannelId, 
         `Received a ${github.context.eventName} event with the following commit message:\n
@@ -52,6 +52,8 @@ try {
         \n\nThis discussion was classified as: ${["Design Discussion", "Non-Design Discussion"][Math.floor(Math.random() * 2)]}`,
         slackToken
     );
+    
+    await app.stop();
   })();
 
 
