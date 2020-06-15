@@ -29,10 +29,15 @@ try {
   const slackSecret = core.getInput('slack-secret');
   const slackChannelId = core.getInput('slack-channel-id');
 
+  let commitMessage;
   console.log("context", JSON.stringify(github.context));
   
-  
-  const commitMessage = "Test Message"; //github.context.payload.commits[0].message;
+  if (github.context.eventName == "pull_request") {
+      commitMessage = github.context.payload.body;
+      
+  } else {
+        commitMessage = github.context.payload.commits[0].message;
+  }
 
 
   const app = new App({
