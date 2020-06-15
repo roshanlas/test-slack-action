@@ -29,7 +29,10 @@ try {
   const slackSecret = core.getInput('slack-secret');
   const slackChannelId = core.getInput('slack-channel-id');
 
-  const commitMessage = github.context.payload.commits[0].message;
+  console.log("context", JSON.stringify(github.context));
+  
+  
+  const commitMessage = "Test Message"; //github.context.payload.commits[0].message;
 
 
   const app = new App({
@@ -41,7 +44,7 @@ try {
     // Start your app
     await app.start(process.env.PORT || 3000);
   
-    console.log("⚡️ Bolt app is running!");
+    // console.log("⚡️ Bolt app is running!");
     
     // After the app starts, publish message
     await publishMessage(
@@ -52,7 +55,7 @@ try {
         \n\nThis discussion was classified as: ${["Design Discussion", "Non-Design Discussion"][Math.floor(Math.random() * 2)]}`,
         slackToken
     );
-    
+
     await app.stop();
   })();
 
