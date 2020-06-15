@@ -4,7 +4,7 @@ const github = require('@actions/github');
 const { App } = require("@slack/bolt");
 
 // Post a message to a channel your app is in using ID and message text
-async function publishMessage(id, text, token) {
+async function publishMessage(app, id, text, token) {
     try {
       // Call the chat.postMessage method using the built-in WebClient
       const result = await app.client.chat.postMessage({
@@ -45,6 +45,7 @@ try {
     
     // After the app starts, publish message
     publishMessage(
+        app,
         slackChannelId, 
         `Received a ${github.context.eventName} event with the following commit message:\n
         ${commitMessage}.
