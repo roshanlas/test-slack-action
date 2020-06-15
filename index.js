@@ -33,7 +33,7 @@ try {
   console.log("context", JSON.stringify(github.context));
   
   if (github.context.eventName == "pull_request") {
-      commitMessage = github.context.payload.body;
+      commitMessage = github.context.payload.pull_request.body;
       
   } else {
         commitMessage = github.context.payload.commits[0].message;
