@@ -1,13 +1,22 @@
 name: 'Hello World'
 description: 'Greet someone and record the time'
 inputs:
-  who-to-greet:  # id of input
-    description: 'Who to greet'
+  slack-token:  # id of input
+    description: 'Slack API Token'
     required: true
-    default: 'World'
+
+  slack-secret:  # id of input
+    description: 'Slack API Secret'
+    required: true
+
+  slack-channel-id:  # id of input
+    description: 'Slack Channel Id'
+    required: true
+
 outputs:
   time: # id of output
     description: 'The time we greeted you'
+
 runs:
   using: 'node12'
   main: 'index.js'
